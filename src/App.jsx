@@ -1044,6 +1044,7 @@ He believe in learning through hands-on experience, teamwork, and continuous exp
       date: 'Just now',
       title: draftData.title,
       excerpt: draftData.description,
+      content: [draftData.description],
       initialClaps: 0,
       comments: 0,
       commentsList: [],

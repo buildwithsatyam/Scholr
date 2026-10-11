@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Volume2, Share2, Bookmark, MessageCircle, MoreHorizontal, Star } from 'lucide-react';
+import { ArrowLeft, Volume2, Share2, Bookmark, MessageCircle, MoreHorizontal, Star, Sparkles } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getImagePath } from '../utils/paths';
+import AiLearningSection from './ai/AiLearningSection';
 
 // High-fidelity custom SVG for the "Clap" icon (identical to the Medium style)
 const ClapIcon = ({ active }) => (
@@ -227,8 +228,8 @@ export default function ArticleDetailView({
       </div>
 
       {/* Engagement Bar */}
-      <div className="flex items-center justify-between border-b border-slate-100 py-3 mb-8 text-slate-500">
-        <div className="flex items-center gap-6">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 py-3 mb-8 text-slate-500">
+        <div className="flex items-center gap-4 sm:gap-6">
           <button 
             className={`flex items-center gap-1.5 hover:text-slate-800 transition ${hasClapped ? 'text-slate-900' : ''}`}
             onClick={handleClap}
@@ -239,6 +240,18 @@ export default function ArticleDetailView({
           <button className="flex items-center gap-1.5 hover:text-slate-800 transition">
             <MessageCircle size={19} />
             <span className="text-sm font-medium">{article.comments || 0}</span>
+          </button>
+
+          {/* Learn with AI Quick Action */}
+          <button 
+            onClick={() => {
+              const el = document.getElementById('medium-ai-learning-mode');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-950 text-white hover:bg-slate-800 transition shadow-xs"
+          >
+            <Sparkles size={13} className="text-emerald-400" />
+            <span>Learn with AI</span>
           </button>
         </div>
 
@@ -273,6 +286,9 @@ export default function ArticleDetailView({
           </AnimatePresence>
         </div>
       </div>
+
+      {/* AI Learning Mode Section */}
+      <AiLearningSection article={article} />
 
       {/* Main Content Area */}
       <div className="font-serif text-[20px] md:text-[21px] leading-relaxed text-slate-800 antialiased article-body-content">

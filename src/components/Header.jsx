@@ -25,7 +25,12 @@ export default function Header({ activeTab, setActiveTab, userProfile, searchQue
             alt="Scholr Logo" 
             className="header-logo-img" 
           />
-          <span>Scholr</span>
+          <span className="flex items-center gap-1.5">
+            Scholr
+            <span className="text-[10px] font-sans font-extrabold bg-slate-950 text-emerald-400 px-1.5 py-0.5 rounded-md tracking-wider">
+              AI
+            </span>
+          </span>
         </motion.a>
         
         <div className="search-bar">
